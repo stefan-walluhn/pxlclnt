@@ -11,7 +11,7 @@ async def pixel_flut_client(host, port, pxls):
 
     while True:
         logging.debug('start writing to socket')
-        writer.writelines(pxls())
+        writer.write(pxls)
         logging.debug('wait for drained socket')
         await writer.drain()
         logging.debug('socket drained')
@@ -28,7 +28,7 @@ def run_client(host, port, url):
     logging.basicConfig(level=logging.DEBUG)
 
     strategy = LinearStrategy(HTTPImage(url).to_bitmap())
-    pxls = strategy.pxls
+    pxls = strategy.pxlsarray
 
     asyncio.run(pixel_flut_client(host, port, pxls))
 

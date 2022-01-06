@@ -1,3 +1,4 @@
+import io
 from functools import lru_cache
 
 
@@ -15,3 +16,8 @@ class LinearStrategy():
         r, g, b = self.bitmap[x, y]
 
         return f'PX {x} {y} {r:02x}{g:02x}{b:02x}\n'.encode() 
+
+    @property
+    def pxlsarray(self):
+        sep = bytearray()
+        return sep.join(self.pxls())
