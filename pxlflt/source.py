@@ -16,4 +16,4 @@ class HTTPImage():
 
     def to_bitmap(self):
         with Image.open(self._img_data) as im:
-            return im.load()
+            return im.resize((1280, 720)).load()
